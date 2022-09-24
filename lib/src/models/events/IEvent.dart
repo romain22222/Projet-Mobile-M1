@@ -1,6 +1,6 @@
-import 'package:projet_mobile_m1/src/models/events/IOutputType.dart';
-import 'package:projet_mobile_m1/src/models/events/RequirementsType.dart';
-import 'package:projet_mobile_m1/src/utils/IllustrationType.dart';
+import '../../utils/IllustrationType.dart';
+import 'IOutputType.dart';
+import 'RequirementsType.dart';
 
 class EventOutput {
   IOutputType up;

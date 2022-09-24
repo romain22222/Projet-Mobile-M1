@@ -1,5 +1,5 @@
-import 'package:projet_mobile_m1/src/models/cards/IInvocation.dart';
-import 'package:projet_mobile_m1/src/utils/IllustrationType.dart';
+import '../../../../utils/IllustrationType.dart';
+import '../../IInvocation.dart';
 
 class UnknownInvocation implements IInvocation {
   @override

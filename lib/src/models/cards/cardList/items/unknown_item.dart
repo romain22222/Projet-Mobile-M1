@@ -1,12 +1,12 @@
 import '../../../../utils/IllustrationType.dart';
 import '../../IItem.dart';
 
-class Banana implements IItem {
+class UnknownItem implements IItem {
   @override
-  String name = "Banana";
+  String name = "unknown";
 
   @override
-  IllustrationType image = IllustrationType("banana");
+  IllustrationType image = IllustrationType("unknown");
 
   @override
   void effect() {

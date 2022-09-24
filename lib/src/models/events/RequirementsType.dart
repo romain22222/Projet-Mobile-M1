@@ -1,5 +1,5 @@
-import 'package:projet_mobile_m1/src/models/cards/ICard.dart';
-import 'package:projet_mobile_m1/src/models/events/IEvent.dart';
+import '../cards/ICard.dart';
+import 'IEvent.dart';
 
 typedef RequireFunction = bool Function();
 

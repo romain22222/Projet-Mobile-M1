@@ -1,5 +1,5 @@
-import 'package:projet_mobile_m1/src/models/cards/ICard.dart';
-import 'package:projet_mobile_m1/src/utils/IllustrationType.dart';
+import '../../../utils/IllustrationType.dart';
+import '../ICard.dart';
 
 class UnknownCard implements ICard {
   @override
