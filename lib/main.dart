@@ -1,7 +1,15 @@
+import 'package:flame/flame.dart';
+import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:projet_mobile_m1/game_manager.dart';
 import 'pages/homePage.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  Flame.device.fullScreen();
+  Flame.device.setLandscape();
+
   runApp(const MyApp());
 }
 
@@ -25,7 +33,8 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(title: 'Super jeu de merde'),
+      // home: const HomePage(title: 'Super jeu de merde'),
+      home: GameWidget(game: GameManager()),
     );
   }
 }
