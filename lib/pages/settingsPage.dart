@@ -1,19 +1,19 @@
 //hello world please
 import 'package:flutter/material.dart';
 
-class GamePage extends StatelessWidget {
-  const GamePage({Key? key}) : super(key: key);
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
         body: Center(
-      child: Text('coucou'),
+      child: Text('settings'),
     ));
   }
 }
 
-// class _GamePageState extends StatefulWidget {
+// class _ extends StatefulWidget {
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
