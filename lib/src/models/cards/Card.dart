@@ -1,4 +1,4 @@
-import '../utils/IllustrationType.dart';
+import '../../utils/IllustrationType.dart';
 
 class Card {
   late String id;

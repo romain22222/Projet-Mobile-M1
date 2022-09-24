@@ -5,5 +5,5 @@ import 'package:flutter/widgets.dart';
 class IllustrationType {
   final String imageLink;
   IllustrationType(this.imageLink);
-  Image get image => Image.file(File(imageLink));
+  Image get image => Image.file(File("assets/images/$imageLink"));
 }
