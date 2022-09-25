@@ -2,10 +2,21 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:projet_mobile_m1/pages/settingsPage.dart';
+import 'package:projet_mobile_m1/src/models/Player.dart';
+import 'package:projet_mobile_m1/src/models/class/ClassController.dart';
+import 'package:projet_mobile_m1/src/models/class/IClass.dart';
+import 'package:projet_mobile_m1/src/models/class/classList/guerrier.dart';
 import 'package:projet_mobile_m1/widgets/events/choice.dart';
 
-class GamePage extends StatelessWidget {
+class GamePage extends StatefulWidget {
   const GamePage({Key? key}) : super(key: key);
+
+  @override
+  _GamePageState createState() => _GamePageState();
+}
+
+class _GamePageState extends State<GamePage> {
+  // late Player player;
 
   @override
   Widget build(BuildContext context) {
@@ -23,38 +34,43 @@ class GamePage extends StatelessWidget {
   }
 }
 
-// class _GamePageState extends StatefulWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         appBar: AppBar(
-//           title: const Text('Game Page'),
-//         ),
-//         body: const Center(
-//           child: Text('coucou'),
-//         ));
-//   }
-// }
-
 class ChoiceClassWidget extends StatefulWidget {
-  const ChoiceClassWidget({super.key});
+  const ChoiceClassWidget({
+    super.key,
+  });
 
   @override
   State<ChoiceClassWidget> createState() => _ChoiceClassWidget();
 }
 
 class _ChoiceClassWidget extends State<ChoiceClassWidget> {
-  List<bool> _isTouchedList = [false, false, false];
+  // ignore: prefer_final_fields
+  // ignore: prefer_final_fields
+  List<IClass> classes = [Guerrier(), Guerrier(), Guerrier(), Guerrier()];
+  late List<String> names;
+  kek() => names = classes.map((e) => e.name).toList();
+  List<Map> isTouched = [
+    {String: names, "touched": false},
+    {String: name, "touched": false},
+    {String: name, "touched": false},
+    {String: name, "touched": false}
+  ];
   int count = 0;
+
   @override
   Widget build(BuildContext context) {
+    kek();
     void _toggleFavorite(index) {
       setState(() {
-        if (_isTouchedList[index]) {
-          _isTouchedList[index] = false;
+        if (_isTouchedList[index].values.first == true) {
+          _isTouchedList[index].update(
+              _isTouchedList[index].keys.firstWhere((element) => true),
+              (value) => false);
           count--;
         } else {
-          _isTouchedList[index] = true;
+          _isTouchedList[index].update(
+              _isTouchedList[index].keys.firstWhere((element) => true),
+              (value) => true);
           count++;
         }
       });
@@ -71,24 +87,24 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
                 GestureDetector(
                   onTap: () => _toggleFavorite(0),
                   child: buildChoiceColumn(
-                      _isTouchedList[0] ? Colors.red : Colors.grey,
+                      _isTouchedList[0].values.first ? Colors.red : Colors.grey,
                       Icons.ac_unit,
-                      "Mage"),
+                      _isTouchedList[0].keys.first.name),
                 ),
-                GestureDetector(
-                  onTap: () => _toggleFavorite(1),
-                  child: buildChoiceColumn(
-                      _isTouchedList[1] ? Colors.red : Colors.grey,
-                      Icons.ac_unit,
-                      "Mage"),
-                ),
-                GestureDetector(
-                  onTap: () => _toggleFavorite(2),
-                  child: buildChoiceColumn(
-                      _isTouchedList[2] ? Colors.red : Colors.grey,
-                      Icons.ac_unit,
-                      "Mage"),
-                ),
+                // GestureDetector(
+                //   onTap: () => _toggleFavorite(1),
+                //   child: buildChoiceColumn(
+                //       _isTouchedList[1].values.first ? Colors.red : Colors.grey,
+                //       Icons.ac_unit,
+                //       _isTouchedList[1].keys.first.name),
+                // ),
+                // GestureDetector(
+                //   onTap: () => _toggleFavorite(2),
+                //   child: buildChoiceColumn(
+                //       _isTouchedList[2].values.first ? Colors.red : Colors.grey,
+                //       Icons.ac_unit,
+                //       _isTouchedList[2].keys.first.name),
+                // ),
               ],
             ),
             Row(

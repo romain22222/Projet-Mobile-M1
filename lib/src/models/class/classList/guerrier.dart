@@ -11,6 +11,8 @@ class Guerrier implements IClass {
   IllustrationType classIcon = IllustrationType("guerrier");
 
   @override
+  String name = "Guerrier";
+  @override
   //
   IChampion startingChampion = GuerrierChampion();
 

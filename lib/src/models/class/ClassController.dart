@@ -5,5 +5,5 @@ import 'IClass.dart';
 class ClassController {
   Map<String, IClass> classes = {"guerrier": Guerrier()};
 
-  dynamic getClassFromId(cardId) => classes[cardId] ?? UnknownClass();
+  dynamic getClassFromId(cardId) => classes[cardId];
 }
