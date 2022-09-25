@@ -1,5 +1,7 @@
 //hello world please
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:projet_mobile_m1/pages/settingsPage.dart';
 import 'package:projet_mobile_m1/widgets/events/choice.dart';
 
 class GamePage extends StatelessWidget {
@@ -43,14 +45,17 @@ class ChoiceClassWidget extends StatefulWidget {
 
 class _ChoiceClassWidget extends State<ChoiceClassWidget> {
   List<bool> _isTouchedList = [false, false, false];
+  int count = 0;
   @override
   Widget build(BuildContext context) {
     void _toggleFavorite(index) {
       setState(() {
         if (_isTouchedList[index]) {
           _isTouchedList[index] = false;
+          count--;
         } else {
           _isTouchedList[index] = true;
+          count++;
         }
       });
     }
@@ -84,6 +89,34 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
                       Icons.ac_unit,
                       "Mage"),
                 ),
+              ],
+            ),
+            Row(
+              children: [
+                MaterialButton(
+                    color: Color.fromARGB(255, 63, 165, 37),
+                    child: const Text("Valider"),
+                    textColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    onPressed: (count == 1
+                        ? () => {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const SettingsPage()),
+                              )
+                            }
+                        : () => {
+                              Fluttertoast.showToast(
+                                  msg: "Vous devez choisir une classe !",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: Colors.red,
+                                  textColor: Colors.white,
+                                  fontSize: 16.0)
+                            }))
               ],
             )
           ],
