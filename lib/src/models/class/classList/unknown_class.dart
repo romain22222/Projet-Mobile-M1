@@ -3,7 +3,7 @@ import '../../cards/IChampion.dart';
 import '../../cards/cardList/champions/unknown_champion.dart';
 import '../../class/IClass.dart';
 import '../../events/IEvent.dart';
-import '../../events/eventList/default_event.dart';
+import '../../events/eventList/unknown_event.dart';
 
 class UnknownClass implements IClass {
   @override

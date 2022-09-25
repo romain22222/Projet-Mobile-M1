@@ -1,5 +1,5 @@
 import 'IEvent.dart';
-import 'eventList/default_event.dart';
+import 'eventList/unknown_event.dart';
 
 class EventController {
   Map<String, IEvent> events = {};
