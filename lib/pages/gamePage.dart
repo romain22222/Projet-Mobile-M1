@@ -2,9 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:projet_mobile_m1/pages/settingsPage.dart';
-import 'package:projet_mobile_m1/src/models/Player.dart';
-import 'package:projet_mobile_m1/src/models/class/IClass.dart';
+import 'package:projet_mobile_m1/src/models/class/ClassController.dart';
 import 'package:projet_mobile_m1/widgets/events/choice.dart';
+
+import '../src/models/Player.dart';
 
 class GamePage extends StatefulWidget {
   const GamePage({Key? key}) : super(key: key);
@@ -14,6 +15,8 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
+  late Player player;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +26,7 @@ class _GamePageState extends State<GamePage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text("Choisissez votre destin !"),
-          ChoiceClassWidget(),
+          ChoiceClassWidget(this),
         ],
       ),
     ));
@@ -31,34 +34,38 @@ class _GamePageState extends State<GamePage> {
 }
 
 class ChoiceClassWidget extends StatefulWidget {
-  const ChoiceClassWidget({super.key});
+  _GamePageState state;
+  ChoiceClassWidget(this.state, {super.key});
 
   @override
-  State<ChoiceClassWidget> createState() => _ChoiceClassWidget();
+  State<ChoiceClassWidget> createState() => _ChoiceClassWidget(state);
 }
 
 class _ChoiceClassWidget extends State<ChoiceClassWidget> {
+  _GamePageState state;
+  _ChoiceClassWidget(this.state);
+
   final List<Map> classList = [
     {'name': 'Mage', 'touched': false},
     {'name': 'Guerrier', 'touched': false},
     {'name': 'Voleur', 'touched': false}
   ];
   int count = 0;
+
   String selectedClass = "";
+
   @override
   Widget build(BuildContext context) {
     void _toggleFavorite(index, classList) {
       setState(() {
+        classList.forEach((e) => e.update('touched', (value) => false));
         selectedClass = classList[index]['name'];
-        if (classList[index].containsValue(false)) {
-          classList[index].update('touched', (value) => true);
-          count++;
-        } else {
-          classList[index].update('touched', (value) => false);
-          count--;
-        }
+        count = 1;
+        classList[index].update('touched', (value) => true);
       });
     }
+
+    Iterable listOfClasses = ClassController().classNames;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -103,6 +110,8 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
                         borderRadius: BorderRadius.circular(10)),
                     onPressed: (count == 1
                         ? () => {
+                              state.player = Player(ClassController()
+                                  .getClassFromId(selectedClass)),
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -118,7 +127,8 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
                                   backgroundColor: Colors.red,
                                   textColor: Colors.white,
                                   fontSize: 16.0)
-                            }))
+                            })),
+                Text('$listOfClasses'),
               ],
             )
           ],

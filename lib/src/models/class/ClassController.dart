@@ -5,6 +5,7 @@ import 'IClass.dart';
 class ClassController {
   Map<String, IClass> classes = {"guerrier": Guerrier()};
 
-  dynamic getClassFromId(cardId) => classes[cardId];
+  dynamic getClassFromId(cardId) =>
+      classes[cardId.toLowerCase()] ?? UnknownClass();
   Iterable get classNames => classes.keys;
 }
