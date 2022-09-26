@@ -6,4 +6,5 @@ class ClassController {
   Map<String, IClass> classes = {"guerrier": Guerrier()};
 
   dynamic getClassFromId(cardId) => classes[cardId];
+  Iterable get classNames => classes.keys;
 }
