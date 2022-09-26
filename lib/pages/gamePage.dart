@@ -69,21 +69,21 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
             Row(
               children: [
                 GestureDetector(
-                  onTap: () => _toggleFavorite(0, classListc),
+                  onTap: () => _toggleFavorite(0, classList),
                   child: buildChoiceColumn(
                       classList[0]['touched'] ? Colors.red : Colors.grey,
                       Icons.ac_unit,
                       classList[0]['name']),
                 ),
                 GestureDetector(
-                  onTap: () => _toggleFavorite(1, classListc),
+                  onTap: () => _toggleFavorite(1, classList),
                   child: buildChoiceColumn(
                       classList[1]['touched'] ? Colors.red : Colors.grey,
                       Icons.ac_unit,
                       classList[1]['name']),
                 ),
                 GestureDetector(
-                  onTap: () => _toggleFavorite(2, classListc),
+                  onTap: () => _toggleFavorite(2, classList),
                   child: buildChoiceColumn(
                       classList[2]['touched'] ? Colors.red : Colors.grey,
                       Icons.ac_unit,
