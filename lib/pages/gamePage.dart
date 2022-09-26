@@ -9,7 +9,6 @@ import '../src/models/Player.dart';
 
 class GamePage extends StatefulWidget {
   const GamePage({Key? key}) : super(key: key);
-
   @override
   _GamePageState createState() => _GamePageState();
 }
@@ -20,11 +19,17 @@ class _GamePageState extends State<GamePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
+        body: Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/images/backgrounds/background_00.png"),
+          fit: BoxFit.cover,
+        ),
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
+        children: const [
           Text("Choisissez votre destin !"),
           ChoiceClassWidget(this),
         ],
@@ -82,6 +87,7 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
                       Icons.ac_unit,
                       classList[0]['name']),
                 ),
+                SizedBox(width: 10),
                 GestureDetector(
                   onTap: () => _toggleFavorite(1, classList),
                   child: buildChoiceColumn(
@@ -89,6 +95,7 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
                       Icons.ac_unit,
                       classList[1]['name']),
                 ),
+                SizedBox(width: 10),
                 GestureDetector(
                   onTap: () => _toggleFavorite(2, classList),
                   child: buildChoiceColumn(
@@ -103,7 +110,7 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
                 Text('$count'),
                 Text('$selectedClass'),
                 MaterialButton(
-                    color: Color.fromARGB(255, 63, 165, 37),
+                    color: const Color.fromARGB(255, 63, 165, 37),
                     child: const Text("Valider"),
                     textColor: Colors.white,
                     shape: RoundedRectangleBorder(

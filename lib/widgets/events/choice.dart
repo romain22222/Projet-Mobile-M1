@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-Column buildChoiceColumn(Color color, IconData icon, String label) {
+Column buildChoiceColumn(
+    Color color, IconData icon, String label, String imagePath) {
   return Column(
     mainAxisSize: MainAxisSize.min,
     mainAxisAlignment: MainAxisAlignment.center,
@@ -8,7 +9,7 @@ Column buildChoiceColumn(Color color, IconData icon, String label) {
       Icon(icon, color: color),
       Container(
         width: 100.0,
-        height: 100.0,
+        height: 350.0,
         decoration: const BoxDecoration(
           color: Color.fromARGB(0, 255, 255, 255),
           border: Border(
