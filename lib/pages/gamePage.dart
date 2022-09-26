@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:projet_mobile_m1/pages/settingsPage.dart';
 import 'package:projet_mobile_m1/src/models/Player.dart';
-import 'package:projet_mobile_m1/src/models/class/ClassController.dart';
 import 'package:projet_mobile_m1/src/models/class/IClass.dart';
-import 'package:projet_mobile_m1/src/models/class/classList/guerrier.dart';
 import 'package:projet_mobile_m1/widgets/events/choice.dart';
 
 class GamePage extends StatefulWidget {
@@ -16,8 +14,6 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
-  // late Player player;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,43 +31,31 @@ class _GamePageState extends State<GamePage> {
 }
 
 class ChoiceClassWidget extends StatefulWidget {
-  const ChoiceClassWidget({
-    super.key,
-  });
+  const ChoiceClassWidget({super.key});
 
   @override
   State<ChoiceClassWidget> createState() => _ChoiceClassWidget();
 }
 
 class _ChoiceClassWidget extends State<ChoiceClassWidget> {
-  // ignore: prefer_final_fields
-  // ignore: prefer_final_fields
-  List<IClass> classes = [Guerrier(), Guerrier(), Guerrier(), Guerrier()];
-  late List<String> names;
-  kek() => names = classes.map((e) => e.name).toList();
-  List<Map> isTouched = [
-    {String: names, "touched": false},
-    {String: name, "touched": false},
-    {String: name, "touched": false},
-    {String: name, "touched": false}
+  final List<Map> classList = [
+    {'name': 'Mage', 'touched': false},
+    {'name': 'Guerrier', 'touched': false},
+    {'name': 'Voleur', 'touched': false}
   ];
   int count = 0;
-
+  String selectedClass = "";
   @override
   Widget build(BuildContext context) {
-    kek();
-    void _toggleFavorite(index) {
+    void _toggleFavorite(index, classList) {
       setState(() {
-        if (_isTouchedList[index].values.first == true) {
-          _isTouchedList[index].update(
-              _isTouchedList[index].keys.firstWhere((element) => true),
-              (value) => false);
-          count--;
-        } else {
-          _isTouchedList[index].update(
-              _isTouchedList[index].keys.firstWhere((element) => true),
-              (value) => true);
+        selectedClass = classList[index]['name'];
+        if (classList[index].containsValue(false)) {
+          classList[index].update('touched', (value) => true);
           count++;
+        } else {
+          classList[index].update('touched', (value) => false);
+          count--;
         }
       });
     }
@@ -85,30 +69,32 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
             Row(
               children: [
                 GestureDetector(
-                  onTap: () => _toggleFavorite(0),
+                  onTap: () => _toggleFavorite(0, classListc),
                   child: buildChoiceColumn(
-                      _isTouchedList[0].values.first ? Colors.red : Colors.grey,
+                      classList[0]['touched'] ? Colors.red : Colors.grey,
                       Icons.ac_unit,
-                      _isTouchedList[0].keys.first.name),
+                      classList[0]['name']),
                 ),
-                // GestureDetector(
-                //   onTap: () => _toggleFavorite(1),
-                //   child: buildChoiceColumn(
-                //       _isTouchedList[1].values.first ? Colors.red : Colors.grey,
-                //       Icons.ac_unit,
-                //       _isTouchedList[1].keys.first.name),
-                // ),
-                // GestureDetector(
-                //   onTap: () => _toggleFavorite(2),
-                //   child: buildChoiceColumn(
-                //       _isTouchedList[2].values.first ? Colors.red : Colors.grey,
-                //       Icons.ac_unit,
-                //       _isTouchedList[2].keys.first.name),
-                // ),
+                GestureDetector(
+                  onTap: () => _toggleFavorite(1, classListc),
+                  child: buildChoiceColumn(
+                      classList[1]['touched'] ? Colors.red : Colors.grey,
+                      Icons.ac_unit,
+                      classList[1]['name']),
+                ),
+                GestureDetector(
+                  onTap: () => _toggleFavorite(2, classListc),
+                  child: buildChoiceColumn(
+                      classList[2]['touched'] ? Colors.red : Colors.grey,
+                      Icons.ac_unit,
+                      classList[2]['name']),
+                ),
               ],
             ),
             Row(
               children: [
+                Text('$count'),
+                Text('$selectedClass'),
                 MaterialButton(
                     color: Color.fromARGB(255, 63, 165, 37),
                     child: const Text("Valider"),
