@@ -73,14 +73,15 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
   ];
   int count = 0;
   int index = 0;
+  String description = "";
   String selectedClass = "";
-
   @override
   Widget build(BuildContext context) {
     void _toggleFavorite(index, classList) {
       setState(() {
         classList.forEach((e) => e.update('touched', (value) => false));
         selectedClass = classList[index]['name'];
+        description = classList[index]['description'];
         count = 1;
         classList[index].update('touched', (value) => true);
         index = classList.firstWhere((element) => element['touched'] == true);
@@ -130,9 +131,7 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
                 Text('$count'),
                 Text('$selectedClass'),
                 Row(children: [
-                  Container(
-                      width: 125,
-                      child: Text('${classList[index]['description']}')),
+                  Container(width: 125, child: Text('$description')),
                   MaterialButton(
                       color: const Color.fromARGB(255, 63, 165, 37),
                       child: const Text("Valider"),
