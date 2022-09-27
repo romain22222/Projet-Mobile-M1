@@ -1,9 +1,15 @@
 import './classList/guerrier.dart';
+import './classList/mage.dart';
+import './classList/voleur.dart';
 import './classList/unknown_class.dart';
 import 'IClass.dart';
 
 class ClassController {
-  static Map<String, IClass> classes = {"guerrier": Guerrier()};
+  static Map<String, IClass> classes = {
+    "guerrier": Guerrier(),
+    "voleur": Voleur(),
+    "mage": Mage()
+  };
 
   static dynamic getClassFromId(classId) =>
       classes[classId.toLowerCase()] ?? UnknownClass();
