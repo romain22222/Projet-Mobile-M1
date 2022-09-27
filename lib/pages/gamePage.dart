@@ -83,7 +83,7 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
         selectedClass = classList[index]['name'];
         count = 1;
         classList[index].update('touched', (value) => true);
-        index = classList.indexWhere((element) => {element['touched'] == true});
+        index = classList.firstWhere((element) => element['touched'] == true);
       });
     }
 
