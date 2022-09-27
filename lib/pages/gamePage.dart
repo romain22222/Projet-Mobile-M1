@@ -32,7 +32,6 @@ class _GamePageState extends State<GamePage> {
         children: [
           const Text("Choisissez votre destin !"),
           ChoiceClassWidget(this),
-          const SizedBox(height: 200),
         ],
       ),
     ));
@@ -71,7 +70,8 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
     }
 
     Iterable listOfClasses = ClassController.classNames;
-
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -110,41 +110,51 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
             ),
             Column(
               children: [
-                Text('$count'),
-                Text('$selectedClass'),
-                Row(children: [
-                  Container(width: 125, child: Text('$description')),
-                  MaterialButton(
-                      color: const Color.fromARGB(255, 63, 165, 37),
-                      child: const Text("Valider"),
-                      textColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      onPressed: (count == 1
-                          ? () => {
-                                state.player = Player(
-                                    ClassController.getClassFromId(
-                                        selectedClass)),
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const SettingsPage()),
-                                )
-                              }
-                          : () => {
-                                Fluttertoast.showToast(
-                                    msg: "Vous devez choisir une classe !",
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.BOTTOM,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: Colors.red,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0)
-                              })),
-                ]),
-                Text('$listOfClasses'),
-                Text('$index'),
+                SizedBox(height: 25),
+                Container(
+                    width: width,
+                    height: height / 9,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.75),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(children: [
+                      SizedBox(
+                        width: width * 0.1,
+                      ),
+                      Flexible(child: Text('$description'), fit: FlexFit.tight),
+                      MaterialButton(
+                          color: const Color.fromARGB(255, 63, 165, 37),
+                          child: const Text("Valider"),
+                          textColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          onPressed: (count == 1
+                              ? () => {
+                                    state.player = Player(
+                                        ClassController.getClassFromId(
+                                            selectedClass)),
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const SettingsPage()),
+                                    )
+                                  }
+                              : () => {
+                                    Fluttertoast.showToast(
+                                        msg: "Vous devez choisir une classe !",
+                                        toastLength: Toast.LENGTH_SHORT,
+                                        gravity: ToastGravity.BOTTOM,
+                                        timeInSecForIosWeb: 1,
+                                        backgroundColor: Colors.red,
+                                        textColor: Colors.white,
+                                        fontSize: 16.0)
+                                  })),
+                      SizedBox(
+                        width: width * 0.1,
+                      ),
+                    ])),
               ],
             )
           ],
