@@ -51,26 +51,8 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
   _GamePageState state;
   _ChoiceClassWidget(this.state);
 
-  final List<Map> classList = [
-    {
-      'name': 'Mage',
-      'touched': false,
-      'imagePath': 'assets/images/warrior/warrior.png',
-      'description': 'Mage description',
-    },
-    {
-      'name': 'Guerrier',
-      'touched': false,
-      'imagePath': 'assets/images/warrior/warrior.png',
-      'description': 'Le guerrier est un personnage qui se bat au corps à corps'
-    },
-    {
-      'name': 'Voleur',
-      'touched': false,
-      'imagePath': 'assets/images/warrior/warrior.png',
-      'description': 'Voleur description'
-    }
-  ];
+  final List<Map> classList =
+      ClassController.getClassSelectionFromList(["mage", "guerrier", "voleur"]);
   int count = 0;
   int index = 0;
   String description = "";
@@ -88,7 +70,7 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
       });
     }
 
-    Iterable listOfClasses = ClassController().classNames;
+    Iterable listOfClasses = ClassController.classNames;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -140,8 +122,9 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
                           borderRadius: BorderRadius.circular(10)),
                       onPressed: (count == 1
                           ? () => {
-                                state.player = Player(ClassController()
-                                    .getClassFromId(selectedClass)),
+                                state.player = Player(
+                                    ClassController.getClassFromId(
+                                        selectedClass)),
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(

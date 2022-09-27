@@ -13,8 +13,14 @@ class UnknownClass implements IClass {
   IChampion startingChampion = UnknownChampion();
 
   @override
-  String name = 'UnknownEvent()';
+  String displayName = 'UnknownEvent()';
 
   @override
   IEvent startingEvent = UnknownEvent();
+
+  @override
+  IllustrationType classSelectionDisplay = IllustrationType("unknown");
+
+  @override
+  String displayDescription = "Unknown description";
 }

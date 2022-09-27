@@ -4,7 +4,9 @@ import '../events/IEvent.dart';
 
 abstract class IClass {
   abstract IllustrationType classIcon;
-  abstract String name;
+  abstract IllustrationType classSelectionDisplay;
+  abstract String displayName;
+  abstract String displayDescription;
   abstract IEvent startingEvent;
   abstract IChampion startingChampion;
 }
