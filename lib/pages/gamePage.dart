@@ -29,9 +29,10 @@ class _GamePageState extends State<GamePage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: const [
-          Text("Choisissez votre destin !"),
+        children: [
+          const Text("Choisissez votre destin !"),
           ChoiceClassWidget(this),
+          const SizedBox(height: 200),
         ],
       ),
     ));
@@ -51,12 +52,27 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
   _ChoiceClassWidget(this.state);
 
   final List<Map> classList = [
-    {'name': 'Mage', 'touched': false},
-    {'name': 'Guerrier', 'touched': false},
-    {'name': 'Voleur', 'touched': false}
+    {
+      'name': 'Mage',
+      'touched': false,
+      'imagePath': 'assets/images/warrior/warrior.png',
+      'description': 'Mage description',
+    },
+    {
+      'name': 'Guerrier',
+      'touched': false,
+      'imagePath': 'assets/images/warrior/warrior.png',
+      'description': 'Le guerrier est un personnage qui se bat au corps à corps'
+    },
+    {
+      'name': 'Voleur',
+      'touched': false,
+      'imagePath': 'assets/images/warrior/warrior.png',
+      'description': 'Voleur description'
+    }
   ];
   int count = 0;
-
+  int index = 0;
   String selectedClass = "";
 
   @override
@@ -67,6 +83,7 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
         selectedClass = classList[index]['name'];
         count = 1;
         classList[index].update('touched', (value) => true);
+        index = classList.indexWhere((element) => {element['touched'] == true});
       });
     }
 
@@ -85,15 +102,17 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
                   child: buildChoiceColumn(
                       classList[0]['touched'] ? Colors.red : Colors.grey,
                       Icons.ac_unit,
-                      classList[0]['name']),
+                      classList[0]['name'],
+                      classList[0]['imagePath']),
                 ),
                 SizedBox(width: 10),
                 GestureDetector(
                   onTap: () => _toggleFavorite(1, classList),
                   child: buildChoiceColumn(
                       classList[1]['touched'] ? Colors.red : Colors.grey,
-                      Icons.ac_unit,
-                      classList[1]['name']),
+                      Icons.access_alarm,
+                      classList[1]['name'],
+                      classList[1]['imagePath']),
                 ),
                 SizedBox(width: 10),
                 GestureDetector(
@@ -101,41 +120,49 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
                   child: buildChoiceColumn(
                       classList[2]['touched'] ? Colors.red : Colors.grey,
                       Icons.ac_unit,
-                      classList[2]['name']),
+                      classList[2]['name'],
+                      classList[2]['imagePath']),
                 ),
               ],
             ),
-            Row(
+            Column(
               children: [
                 Text('$count'),
                 Text('$selectedClass'),
-                MaterialButton(
-                    color: const Color.fromARGB(255, 63, 165, 37),
-                    child: const Text("Valider"),
-                    textColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    onPressed: (count == 1
-                        ? () => {
-                              state.player = Player(ClassController()
-                                  .getClassFromId(selectedClass)),
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const SettingsPage()),
-                              )
-                            }
-                        : () => {
-                              Fluttertoast.showToast(
-                                  msg: "Vous devez choisir une classe !",
-                                  toastLength: Toast.LENGTH_SHORT,
-                                  gravity: ToastGravity.BOTTOM,
-                                  timeInSecForIosWeb: 1,
-                                  backgroundColor: Colors.red,
-                                  textColor: Colors.white,
-                                  fontSize: 16.0)
-                            })),
+                Row(children: [
+                  Container(
+                      width: 125,
+                      child: Text('${classList[index]['description']}')),
+                  MaterialButton(
+                      color: const Color.fromARGB(255, 63, 165, 37),
+                      child: const Text("Valider"),
+                      textColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      onPressed: (count == 1
+                          ? () => {
+                                state.player = Player(ClassController()
+                                    .getClassFromId(selectedClass)),
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const SettingsPage()),
+                                )
+                              }
+                          : () => {
+                                Fluttertoast.showToast(
+                                    msg: "Vous devez choisir une classe !",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.red,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0)
+                              })),
+                ]),
                 Text('$listOfClasses'),
+                Text('$index'),
               ],
             )
           ],

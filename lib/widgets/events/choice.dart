@@ -10,9 +10,13 @@ Column buildChoiceColumn(
       Container(
         width: 100.0,
         height: 350.0,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(imagePath),
+            fit: BoxFit.cover,
+          ),
           color: Color.fromARGB(0, 255, 255, 255),
-          border: Border(
+          border: const Border(
             top: BorderSide(width: 1.0, color: Color.fromARGB(255, 0, 0, 0)),
             left: BorderSide(width: 1.0, color: Color.fromARGB(255, 0, 0, 0)),
             right: BorderSide(width: 1.0, color: Color.fromARGB(255, 0, 0, 0)),
