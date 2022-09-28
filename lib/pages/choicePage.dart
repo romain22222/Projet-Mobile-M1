@@ -1,6 +1,7 @@
 //hello world please
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:projet_mobile_m1/pages/eventPage.dart';
 
 import '../pages/settingsPage.dart';
 import '../src/models/Player.dart';
@@ -138,7 +139,7 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const SettingsPage()),
+                                              EventPage(state.player)),
                                     )
                                   }
                               : () => {
