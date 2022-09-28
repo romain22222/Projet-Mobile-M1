@@ -19,6 +19,9 @@ class UnknownEvent implements IEvent {
 
   @override
   RequirementsType requirements = RequirementsType();
+
+  @override
+  String zone = "unknown";
 }
 
 class UnknownOutput implements IOutputType {

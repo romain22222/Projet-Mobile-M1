@@ -12,7 +12,7 @@ class EventOutput {
 
 abstract class IEvent {
   abstract String description;
-  abstract EventOutput outputs;
+  abstract EventOutput ;
   abstract IllustrationType background;
   abstract IllustrationType foreground;
 // missing classSpecific

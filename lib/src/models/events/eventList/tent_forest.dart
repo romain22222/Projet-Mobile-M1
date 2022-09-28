@@ -8,8 +8,8 @@ class TentForest implements IEvent {
   String description =
       "Durant un passage dans la forêt d'à côté, vous tombez sur une tente au pied d'un grand sapin.";
   @override
-  EventOutput outputs =
-      EventOutput(GoInForest(), InTent(), GoInForest(), Backwards());
+  EventOutput outputEvents =
+      EventOutput(InTent(), Backwards(), GoInForest(), GoInForest());
 
   @override
   IllustrationType background =
@@ -20,6 +20,9 @@ class TentForest implements IEvent {
 
   @override
   RequirementsType requirements = RequirementsType();
+
+  @override
+  String zone = "Forêt";
 }
 
 class Backwards implements IOutputType {

@@ -36,3 +36,14 @@ Column buildChoiceColumn(
     ],
   );
 }
+
+Scaffold buildOutputs(List output) {
+  return Scaffold(
+    body: Center(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [],
+      ),
+    ),
+  );
+}

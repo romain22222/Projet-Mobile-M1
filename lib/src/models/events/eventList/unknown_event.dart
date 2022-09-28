@@ -7,7 +7,7 @@ class UnknownEvent implements IEvent {
   @override
   String description = "unknown_event";
   @override
-  EventOutput outputs = EventOutput(
+  EventOutput outputEvents = EventOutput(
       UnknownOutput(), UnknownOutput(), UnknownOutput(), UnknownOutput());
 
   @override
