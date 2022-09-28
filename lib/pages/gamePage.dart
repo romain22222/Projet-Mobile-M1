@@ -1,11 +1,11 @@
 //hello world please
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:projet_mobile_m1/pages/settingsPage.dart';
-import 'package:projet_mobile_m1/src/models/class/ClassController.dart';
-import 'package:projet_mobile_m1/widgets/events/choice.dart';
 
+import '../pages/settingsPage.dart';
 import '../src/models/Player.dart';
+import '../src/models/class/ClassController.dart';
+import '../widgets/events/choice.dart';
 
 class GamePage extends StatefulWidget {
   const GamePage({Key? key}) : super(key: key);
