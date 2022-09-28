@@ -7,13 +7,13 @@ import '../src/models/Player.dart';
 import '../src/models/class/ClassController.dart';
 import '../widgets/events/choice.dart';
 
-class GamePage extends StatefulWidget {
-  const GamePage({Key? key}) : super(key: key);
+class ChoicePage extends StatefulWidget {
+  const ChoicePage({Key? key}) : super(key: key);
   @override
-  _GamePageState createState() => _GamePageState();
+  _ChoicePageState createState() => _ChoicePageState();
 }
 
-class _GamePageState extends State<GamePage> {
+class _ChoicePageState extends State<ChoicePage> {
   late Player player;
 
   @override
@@ -39,7 +39,7 @@ class _GamePageState extends State<GamePage> {
 }
 
 class ChoiceClassWidget extends StatefulWidget {
-  _GamePageState state;
+  _ChoicePageState state;
   ChoiceClassWidget(this.state, {super.key});
 
   @override
@@ -47,7 +47,7 @@ class ChoiceClassWidget extends StatefulWidget {
 }
 
 class _ChoiceClassWidget extends State<ChoiceClassWidget> {
-  _GamePageState state;
+  _ChoicePageState state;
   _ChoiceClassWidget(this.state);
 
   final List<Map> classList =

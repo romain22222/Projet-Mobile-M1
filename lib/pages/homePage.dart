@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './gamePage.dart';
+import 'choicePage.dart';
 import './settingsPage.dart';
 
 class HomePage extends StatelessWidget {
@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const GamePage()),
+                  MaterialPageRoute(builder: (context) => const ChoicePage()),
                 );
               },
               child: const Text('Jouer')),
