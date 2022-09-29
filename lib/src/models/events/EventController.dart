@@ -7,8 +7,8 @@ class EventController {
 
   static dynamic getEventFromId(cardId) => events[cardId] ?? UnknownEvent();
   static Iterable get eventIds => events.keys;
-  static dynamic get eventValuesFrom(ids) => {
-    List eventsCollected = [];
+  static dynamic eventValuesFrom(List<String> ids) {
+    dynamic eventsCollected = [];
     for (var eventId in ids) {
       eventsCollected.add(getEventFromId(eventId));
     }

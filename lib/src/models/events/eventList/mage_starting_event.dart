@@ -3,13 +3,13 @@ import '../IEvent.dart';
 import '../IOutputType.dart';
 import '../RequirementsType.dart';
 
-class MageStartingEvent implements IEvent {
+class MageStartingEvent extends IEvent {
   @override
   String description =
       "Vous venez de vous réveiller dans un temple, et observez les alentours...";
   @override
-  EventOutput outputEvents =
-      EventOutput(GoToTown(), ExploreTemple(), GoLeft(), GoRight());
+  EventOutput outs =
+      EventOutput(GoToTown(), ExploreTemple(), NoOutputLeft(), NoOutputRight());
 
   @override
   IllustrationType background = IllustrationType("unknown");
@@ -24,7 +24,7 @@ class MageStartingEvent implements IEvent {
   String zone = "Temple";
 }
 
-class GoToTown implements IOutputType {
+class GoToTown extends IOutputType {
   @override
   String description = "Aller en ville";
   @override
@@ -33,6 +33,9 @@ class GoToTown implements IOutputType {
   void result() {
     // nothing
   }
+
+  @override
+  Direction direction = Direction.up;
 }
 
 class ExploreTemple implements IOutputType {
@@ -44,15 +47,7 @@ class ExploreTemple implements IOutputType {
   void result() {
     // nothing
   }
-}
 
-class GoLeft implements IOutputType {
   @override
-  String description = "Aller en ville";
-  @override
-  RequirementsType requirements = RequirementsType();
-  @override
-  void result() {
-    // nothing
-  }
+  Direction direction = Direction.down;
 }

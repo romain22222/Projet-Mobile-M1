@@ -51,36 +51,9 @@ class ChoiceEventWidget extends StatefulWidget {
 class _ChoiceEventWidget extends State<ChoiceEventWidget> {
   _EventPageState state;
   _ChoiceEventWidget(this.state);
-  final List<Map> events = [
-    {
-      "zone": "test",
-      "description": "test",
-      "image": "assets/images/events/event_00.png",
-      "outputs": [
-        {
-          "description": "test",
-          "result": () => {},
-          "requirements": {
-            "some": "thing",
-          }
-        },
-        {
-          "zone": "test",
-          "description": "test",
-          "image": "assets/images/events/event_00.png",
-          "outputs": [
-            {
-              "description": "test",
-              "result": () => {},
-              "requirements": {
-                "some": "thing",
-              }
-            }
-          ]
-        },
-      ]
-    }
-  ];
+  final List<Map> events = EventController.eventValuesFrom([
+    "tent_forest"
+  ]); // TODO : au lieu de piocher les events dans le controller, les prendre dans le player quand il y en aura plus
   String selectedEvent = "";
   @override
   Widget build(BuildContext context) {

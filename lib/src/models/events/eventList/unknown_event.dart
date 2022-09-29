@@ -3,11 +3,11 @@ import '../IEvent.dart';
 import '../IOutputType.dart';
 import '../RequirementsType.dart';
 
-class UnknownEvent implements IEvent {
+class UnknownEvent extends IEvent {
   @override
   String description = "unknown_event";
   @override
-  EventOutput outputEvents = EventOutput(
+  EventOutput outs = EventOutput(
       UnknownOutput(), UnknownOutput(), UnknownOutput(), UnknownOutput());
 
   @override
@@ -18,15 +18,7 @@ class UnknownEvent implements IEvent {
 
   @override
   RequirementsType requirements = RequirementsType();
-}
 
-class UnknownOutput implements IOutputType {
   @override
-  String description = "unknown_output";
-  @override
-  RequirementsType requirements = RequirementsType();
-  @override
-  void result() {
-    // nothing
-  }
+  String zone = "unknown";
 }

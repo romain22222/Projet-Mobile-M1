@@ -3,13 +3,13 @@ import '../IEvent.dart';
 import '../IOutputType.dart';
 import '../RequirementsType.dart';
 
-class TentForest implements IEvent {
+class TentForest extends IEvent {
   @override
   String description =
       "Durant un passage dans la forêt d'à côté, vous tombez sur une tente au pied d'un grand sapin.";
   @override
-  EventOutput outputEvents =
-      EventOutput(InTent(), Backwards(), GoInForest(), GoInForest());
+  EventOutput outs =
+      EventOutput(InTent(), Backwards(), GoInForestLeft(), GoInForestRight());
 
   @override
   IllustrationType background =
@@ -25,7 +25,7 @@ class TentForest implements IEvent {
   String zone = "Forêt";
 }
 
-class Backwards implements IOutputType {
+class Backwards extends IOutputType {
   @override
   String description = "Revenir sur vos pas";
 
@@ -36,9 +36,12 @@ class Backwards implements IOutputType {
   void result() {
     // TODO: implement result
   }
+
+  @override
+  Direction direction = Direction.down;
 }
 
-class GoInForest implements IOutputType {
+abstract class GoInForest extends IOutputType {
   @override
   String description = "Continuer dans la forêt";
 
@@ -51,7 +54,17 @@ class GoInForest implements IOutputType {
   }
 }
 
-class InTent implements IOutputType {
+class GoInForestLeft extends GoInForest {
+  @override
+  Direction direction = Direction.left;
+}
+
+class GoInForestRight extends GoInForest {
+  @override
+  Direction direction = Direction.right;
+}
+
+class InTent extends IOutputType {
   @override
   String description = "Entrer dans la tente";
   @override
@@ -60,4 +73,7 @@ class InTent implements IOutputType {
   void result() {
     // nothing
   }
+
+  @override
+  Direction direction = Direction.up;
 }

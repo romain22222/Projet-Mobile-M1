@@ -11,10 +11,12 @@ class EventOutput {
 }
 
 abstract class IEvent {
+  abstract String zone;
   abstract String description;
-  abstract EventOutput ;
+  abstract EventOutput outs;
   abstract IllustrationType background;
   abstract IllustrationType foreground;
 // missing classSpecific
   abstract RequirementsType requirements;
+  List<IOutputType> get outputs => [outs.up, outs.right, outs.down, outs.left];
 }
