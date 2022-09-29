@@ -10,5 +10,8 @@ class Player {
   History history = History();
   IClass classChosen;
   Stats stats = Stats();
-  Player(this.classChosen);
+  Player(this.classChosen) {
+    availableEvents.add(classChosen.startingEvent);
+    inventory.add(classChosen.startingChampion);
+  }
 }
