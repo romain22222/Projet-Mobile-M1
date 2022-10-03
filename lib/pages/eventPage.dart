@@ -3,6 +3,7 @@ import 'package:projet_mobile_m1/pages/choicePage.dart';
 import 'package:projet_mobile_m1/src/models/Player.dart';
 import 'package:projet_mobile_m1/src/models/events/EventController.dart';
 import 'package:projet_mobile_m1/widgets/events/choice.dart';
+import 'package:projet_mobile_m1/widgets/card/card.dart';
 
 class EventPage extends StatefulWidget {
   Player player;
@@ -14,7 +15,9 @@ class EventPage extends StatefulWidget {
 class _EventPageState extends State<EventPage> {
   Player player;
   _EventPageState(this.player);
-
+ final dynamic events = EventController.eventValuesFrom([
+    "tent_forest"
+  ]); // TODO : au lieu de piocher les events dans le controller, les prendre dans le player quand il y en aura plus
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -22,9 +25,9 @@ class _EventPageState extends State<EventPage> {
     return Scaffold(
       body: Container(
         width: width,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/backgrounds/background_00.png"),
+            image: AssetImage(events[0].background.imagePath),
             fit: BoxFit.cover,
           ),
         ),
@@ -32,7 +35,7 @@ class _EventPageState extends State<EventPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text("Choisissez votre destin !"),
+            buildCard(Colors.black, events[0].zone, events[0].description, events[0].foreground.imagePath,width,height),
           ],
         ),
       ),
@@ -51,9 +54,7 @@ class ChoiceEventWidget extends StatefulWidget {
 class _ChoiceEventWidget extends State<ChoiceEventWidget> {
   _EventPageState state;
   _ChoiceEventWidget(this.state);
-  final List<Map> events = EventController.eventValuesFrom([
-    "tent_forest"
-  ]); // TODO : au lieu de piocher les events dans le controller, les prendre dans le player quand il y en aura plus
+ 
   String selectedEvent = "";
   @override
   Widget build(BuildContext context) {
@@ -69,7 +70,7 @@ class _ChoiceEventWidget extends State<ChoiceEventWidget> {
         children: [
           GestureDetector(
             onTap: () => {},
-            child: buildChoiceColumn(color, icon, label, imagePath),
+            child: Text('zeiei'),
           ),
         ],
       ),
