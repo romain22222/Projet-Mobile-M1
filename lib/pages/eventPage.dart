@@ -15,7 +15,7 @@ class EventPage extends StatefulWidget {
 class _EventPageState extends State<EventPage> {
   Player player;
   _EventPageState(this.player);
- final dynamic events = EventController.eventValuesFrom([
+  final dynamic events = EventController.eventValuesFrom([
     "tent_forest"
   ]); // TODO : au lieu de piocher les events dans le controller, les prendre dans le player quand il y en aura plus
   @override
@@ -35,7 +35,14 @@ class _EventPageState extends State<EventPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            buildCard(Colors.black, events[0].zone, events[0].description, events[0].foreground.imagePath,width,height),
+            buildEventCard(
+                Colors.black,
+                events[0].zone,
+                events[0].description,
+                events[0].foreground.imagePath,
+                width,
+                height,
+                ['haut', 'bas', 'gauche', 'droite']),
           ],
         ),
       ),
@@ -43,18 +50,18 @@ class _EventPageState extends State<EventPage> {
   }
 }
 
-class ChoiceEventWidget extends StatefulWidget {
+class BuildChoiceEventWidget extends StatefulWidget {
   _EventPageState state;
-  ChoiceEventWidget(this.state, {Key? key}) : super(key: key);
+  BuildChoiceEventWidget(this.state, {Key? key}) : super(key: key);
 
   @override
-  State<ChoiceEventWidget> createState() => _ChoiceEventWidget(state);
+  State<BuildChoiceEventWidget> createState() => _ChoiceEventWidget(state);
 }
 
-class _ChoiceEventWidget extends State<ChoiceEventWidget> {
+class _ChoiceEventWidget extends State<BuildChoiceEventWidget> {
   _EventPageState state;
   _ChoiceEventWidget(this.state);
- 
+
   String selectedEvent = "";
   @override
   Widget build(BuildContext context) {
