@@ -12,7 +12,7 @@ class MageStartingEvent extends IEvent {
       EventOutput(GoToTown(), ExploreTemple(), NoOutputLeft(), NoOutputRight());
 
   @override
-  IllustrationType background = IllustrationType("unknown");
+  IllustrationType background = IllustrationType("unknown.png");
 
   @override
   IllustrationType foreground = IllustrationType("events/mage/mage_00.png");
@@ -30,9 +30,7 @@ class GoToTown extends IOutputType {
   @override
   RequirementsType requirements = RequirementsType();
   @override
-  void result() {
-    // nothing
-  }
+  ResultType result = defaultResult;
 
   @override
   Direction direction = Direction.up;
@@ -44,9 +42,7 @@ class ExploreTemple implements IOutputType {
   @override
   RequirementsType requirements = RequirementsType();
   @override
-  void result() {
-    // nothing
-  }
+  ResultType result = defaultResult;
 
   @override
   Direction direction = Direction.down;

@@ -1,12 +1,12 @@
 import '../../../../utils/IllustrationType.dart';
-import '../../IItem.dart';
+import '../../IChampion.dart';
 
-class UnknownItem implements IItem {
+class MageChampion implements IChampion {
   @override
-  String name = "unknown";
+  String name = "Mage";
 
   @override
-  IllustrationType image = IllustrationType("unknown.png");
+  IllustrationType image = IllustrationType("mage");
 
   @override
   void effect() {
@@ -17,4 +17,7 @@ class UnknownItem implements IItem {
   void passiveEffect() {
     // nothing
   }
+
+  @override
+  int life = 15;
 }

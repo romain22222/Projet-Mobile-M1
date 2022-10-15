@@ -11,10 +11,10 @@ class UnknownEvent extends IEvent {
       UnknownOutput(), UnknownOutput(), UnknownOutput(), UnknownOutput());
 
   @override
-  IllustrationType background = IllustrationType("unknown");
+  IllustrationType background = IllustrationType("unknown.png");
 
   @override
-  IllustrationType foreground = IllustrationType("unknown");
+  IllustrationType foreground = IllustrationType("unknown.png");
 
   @override
   RequirementsType requirements = RequirementsType();

@@ -6,7 +6,7 @@ class UnknownChampion implements IChampion {
   String name = "unknown";
 
   @override
-  IllustrationType image = IllustrationType("unknown");
+  IllustrationType image = IllustrationType("unknown.png");
 
   @override
   void effect() {

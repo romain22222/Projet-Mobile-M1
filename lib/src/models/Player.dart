@@ -21,6 +21,10 @@ class Player {
   }
 
   IEvent getRandomAvailableEvent() {
+    if (availableEvents.isEmpty) {
+      // Default event if no available events, to edit with a more common event
+      return EventController.getEventFromId("tent_forest");
+    }
     availableEvents.shuffle();
     return availableEvents.first;
   }

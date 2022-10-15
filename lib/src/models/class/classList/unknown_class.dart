@@ -7,7 +7,7 @@ import '../../events/eventList/unknown_event.dart';
 
 class UnknownClass implements IClass {
   @override
-  IllustrationType classIcon = IllustrationType("unknown");
+  IllustrationType classIcon = IllustrationType("unknown.png");
 
   @override
   IChampion startingChampion = UnknownChampion();
@@ -19,7 +19,7 @@ class UnknownClass implements IClass {
   IEvent startingEvent = UnknownEvent();
 
   @override
-  IllustrationType classSelectionDisplay = IllustrationType("unknown");
+  IllustrationType classSelectionDisplay = IllustrationType("unknown.png");
 
   @override
   String displayDescription = "Unknown description";

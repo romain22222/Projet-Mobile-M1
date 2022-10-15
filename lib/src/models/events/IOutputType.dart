@@ -3,12 +3,18 @@ import 'RequirementsType.dart';
 
 enum Direction { up, down, left, right, wrongDir }
 
+typedef ResultType = void Function(Player player);
+
 abstract class IOutputType {
   abstract String description;
   abstract RequirementsType requirements;
-  void result();
+  abstract ResultType result;
   abstract Direction direction;
 }
+
+ResultType defaultResult = (Player player) {
+  // nothing
+};
 
 class UnknownOutput extends IOutputType {
   @override
@@ -18,9 +24,7 @@ class UnknownOutput extends IOutputType {
   RequirementsType requirements = RequirementsType();
 
   @override
-  void result() {
-    // nothing
-  }
+  ResultType result = defaultResult;
 
   @override
   Direction direction = Direction.wrongDir;
@@ -35,7 +39,7 @@ abstract class NoOutput extends IOutputType {
       RequirementsType(requirementsFunction: (Player p) => false);
 
   @override
-  void result() => {};
+  ResultType result = defaultResult;
 }
 
 class NoOutputUp extends NoOutput {

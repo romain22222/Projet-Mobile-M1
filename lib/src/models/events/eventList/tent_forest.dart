@@ -33,9 +33,7 @@ class Backwards extends IOutputType {
   RequirementsType requirements = RequirementsType();
 
   @override
-  void result() {
-    // TODO: implement result
-  }
+  ResultType result = defaultResult;
 
   @override
   Direction direction = Direction.down;
@@ -49,9 +47,7 @@ abstract class GoInForest extends IOutputType {
   RequirementsType requirements = RequirementsType();
 
   @override
-  void result() {
-    // TODO: implement result
-  }
+  ResultType result = defaultResult;
 }
 
 class GoInForestLeft extends GoInForest {
@@ -70,9 +66,7 @@ class InTent extends IOutputType {
   @override
   RequirementsType requirements = RequirementsType();
   @override
-  void result() {
-    // nothing
-  }
+  ResultType result = defaultResult;
 
   @override
   Direction direction = Direction.up;

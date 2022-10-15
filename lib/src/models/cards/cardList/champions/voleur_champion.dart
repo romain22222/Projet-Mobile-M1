@@ -1,12 +1,12 @@
 import '../../../../utils/IllustrationType.dart';
-import '../../IInvocation.dart';
+import '../../IChampion.dart';
 
-class UnknownInvocation implements IInvocation {
+class VoleurChampion implements IChampion {
   @override
-  String name = "unknown";
+  String name = "Voleur";
 
   @override
-  IllustrationType image = IllustrationType("unknown.png");
+  IllustrationType image = IllustrationType("voleur");
 
   @override
   void effect() {
@@ -19,5 +19,5 @@ class UnknownInvocation implements IInvocation {
   }
 
   @override
-  int life = -1;
+  int life = 20;
 }

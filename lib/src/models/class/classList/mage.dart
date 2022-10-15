@@ -1,19 +1,19 @@
 import '../../../utils/IllustrationType.dart';
 import '../../cards/IChampion.dart';
-import '../../cards/cardList/champions/guerrier_champion.dart';
+import '../../cards/cardList/champions/mage_champion.dart';
 import '../../class/IClass.dart';
 import '../../events/IEvent.dart';
-import '../../events/eventList/unknown_event.dart';
+import '../../events/eventList/mage_starting_event.dart';
 
 class Mage implements IClass {
   @override
   IllustrationType classIcon = IllustrationType("mage");
 
   @override
-  IChampion startingChampion = GuerrierChampion();
+  IChampion startingChampion = MageChampion();
 
   @override
-  IEvent startingEvent = UnknownEvent();
+  IEvent startingEvent = MageStartingEvent();
 
   @override
   IllustrationType classSelectionDisplay = IllustrationType("mage/mage.png");

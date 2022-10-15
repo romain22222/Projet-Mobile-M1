@@ -20,6 +20,7 @@ class _EventPageState extends State<EventPage> {
     double height = MediaQuery.of(context).size.height;
     IEvent chosenEvent = player.getRandomAvailableEvent();
     player.history.eventReceived.add(chosenEvent);
+    player.availableEvents.remove(chosenEvent);
     return Scaffold(
       body: Container(
         width: width,
@@ -33,7 +34,8 @@ class _EventPageState extends State<EventPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            buildEventCard(Colors.black, width, height, chosenEvent, player),
+            buildEventCard(
+                Colors.black, width, height, chosenEvent, player, context),
           ],
         ),
       ),

@@ -2,17 +2,24 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../../pages/eventPage.dart';
 import '../../src/models/Player.dart';
 import '../../src/models/events/IEvent.dart';
 import '../../src/models/events/IOutputType.dart';
 
-void commonActionOfOutput(IOutputType output, Player player) {
+void commonActionOfOutput(
+    BuildContext context, IOutputType output, Player player) {
   print("Pressed ${output.direction}");
   player.history.outChosen.add(output);
-  // TODO relancer un build de la page d'event
+  // TODO check si fin de partie -> écran de fin
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => EventPage(player)),
+  );
 }
 
-IconButton createOutput(IconData icon, IOutputType output, Player player) {
+IconButton createOutput(
+    IconData icon, IOutputType output, Player player, BuildContext context) {
   // TODO prendre en charge la NoOutput -> griser + ignorer le clic
   // TODO rajouter le fait d'afficher la description
   return IconButton(
@@ -20,39 +27,40 @@ IconButton createOutput(IconData icon, IOutputType output, Player player) {
       color: Colors.black,
       onPressed: () {
         if (output is NoOutput || output is UnknownOutput) {
+          print("Ignored");
           return;
         }
-        output.result();
-        commonActionOfOutput(output, player);
+        output.result(player);
+        commonActionOfOutput(context, output, player);
       });
 }
 
-Row buildRowOutputsRightLeftIcons(
-    EventOutput outputs, double width, double height, Player player) {
+Row buildRowOutputsRightLeftIcons(EventOutput outputs, double width,
+    double height, Player player, BuildContext context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      createOutput(Icons.arrow_back, outputs.left, player),
+      createOutput(Icons.arrow_back, outputs.left, player, context),
       SizedBox(width: min(width, height) / 2.5),
-      createOutput(Icons.arrow_forward, outputs.right, player),
+      createOutput(Icons.arrow_forward, outputs.right, player, context),
     ],
   );
 }
 
-Column buildColumnOutputs(
-    EventOutput outputs, double width, double height, Player player) {
+Column buildColumnOutputs(EventOutput outputs, double width, double height,
+    Player player, BuildContext context) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      createOutput(Icons.arrow_upward, outputs.up, player),
+      createOutput(Icons.arrow_upward, outputs.up, player, context),
       SizedBox(height: min(width, height) / 2),
-      createOutput(Icons.arrow_downward, outputs.down, player),
+      createOutput(Icons.arrow_downward, outputs.down, player, context),
     ],
   );
 }
 
-Column buildEventCard(
-    Color color, double width, double height, IEvent event, Player player) {
+Column buildEventCard(Color color, double width, double height, IEvent event,
+    Player player, BuildContext context) {
   return Column(
     mainAxisSize: MainAxisSize.min,
     mainAxisAlignment: MainAxisAlignment.center,
@@ -113,10 +121,11 @@ Column buildEventCard(
             Align(
                 alignment: Alignment.center,
                 child: buildRowOutputsRightLeftIcons(
-                    event.outs, width, height, player)),
+                    event.outs, width, height, player, context)),
             Align(
                 alignment: Alignment.center,
-                child: buildColumnOutputs(event.outs, width, height, player)),
+                child: buildColumnOutputs(
+                    event.outs, width, height, player, context)),
           ])),
     ],
   );
