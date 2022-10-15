@@ -3,10 +3,9 @@ import '../IEvent.dart';
 import '../IOutputType.dart';
 import '../RequirementsType.dart';
 
-class UnknownEvent extends IEvent {
+class GuerrierStartingEvent extends IEvent {
   @override
-  String description =
-      "starting event: lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua";
+  String description = "truc random";
   @override
   EventOutput outs = EventOutput(
       UnknownOutput(), UnknownOutput(), UnknownOutput(), UnknownOutput());

@@ -5,10 +5,10 @@ import 'eventList/unknown_event.dart';
 class EventController {
   static Map<String, IEvent> events = {"tent_forest": TentForest()};
 
-  static dynamic getEventFromId(cardId) => events[cardId] ?? UnknownEvent();
+  static IEvent getEventFromId(cardId) => events[cardId] ?? UnknownEvent();
   static Iterable get eventIds => events.keys;
-  static dynamic eventValuesFrom(List<String> ids) {
-    dynamic eventsCollected = [];
+  static List<IEvent> eventValuesFrom(List<String> ids) {
+    List<IEvent> eventsCollected = [];
     for (var eventId in ids) {
       eventsCollected.add(getEventFromId(eventId));
     }

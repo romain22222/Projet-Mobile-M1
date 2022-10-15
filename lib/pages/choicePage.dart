@@ -1,9 +1,8 @@
 //hello world please
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:projet_mobile_m1/pages/eventPage.dart';
 
-import '../pages/settingsPage.dart';
+import '../pages/eventPage.dart';
 import '../src/models/Player.dart';
 import '../src/models/class/ClassController.dart';
 import '../widgets/events/choice.dart';
@@ -70,7 +69,6 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
       });
     }
 
-    Iterable listOfClasses = ClassController.classNames;
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Row(
@@ -135,6 +133,7 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
                                     state.player = Player(
                                         ClassController.getClassFromId(
                                             selectedClass)),
+                                    state.player.initBasicEvents(),
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(

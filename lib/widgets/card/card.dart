@@ -1,54 +1,58 @@
-import 'package:flutter/material.dart';
 import 'dart:math';
 
-Row buildRowOutputsRightLeftIcons(String outputs, double width, double height) {
+import 'package:flutter/material.dart';
+
+import '../../src/models/Player.dart';
+import '../../src/models/events/IEvent.dart';
+import '../../src/models/events/IOutputType.dart';
+
+void commonActionOfOutput(IOutputType output, Player player) {
+  print("Pressed ${output.direction}");
+  player.history.outChosen.add(output);
+  // TODO relancer un build de la page d'event
+}
+
+IconButton createOutput(IconData icon, IOutputType output, Player player) {
+  // TODO prendre en charge la NoOutput -> griser + ignorer le clic
+  // TODO rajouter le fait d'afficher la description
+  return IconButton(
+      icon: Icon(icon),
+      color: Colors.black,
+      onPressed: () {
+        if (output is NoOutput || output is UnknownOutput) {
+          return;
+        }
+        output.result();
+        commonActionOfOutput(output, player);
+      });
+}
+
+Row buildRowOutputsRightLeftIcons(
+    EventOutput outputs, double width, double height, Player player) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      IconButton(
-        icon: const Icon(Icons.arrow_back),
-        color: Colors.black,
-        onPressed: () {
-          print('Pressed');
-        },
-      ),
-      SizedBox(width: min(width, height) / 2),
-      IconButton(
-        icon: const Icon(Icons.arrow_forward),
-        color: Colors.black,
-        onPressed: () {
-          print('Pressed');
-        },
-      ),
+      createOutput(Icons.arrow_back, outputs.left, player),
+      SizedBox(width: min(width, height) / 2.5),
+      createOutput(Icons.arrow_forward, outputs.right, player),
     ],
   );
 }
 
-Column buildColumnOutputs(String outputs, double width, double height) {
+Column buildColumnOutputs(
+    EventOutput outputs, double width, double height, Player player) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      IconButton(
-        icon: const Icon(Icons.arrow_upward),
-        color: Colors.black,
-        onPressed: () {
-          print('Pressed');
-        },
-      ),
+      createOutput(Icons.arrow_upward, outputs.up, player),
       SizedBox(height: min(width, height) / 2),
-      IconButton(
-        icon: const Icon(Icons.arrow_downward),
-        color: Colors.black,
-        onPressed: () {
-          print('Pressed');
-        },
-      ),
+      createOutput(Icons.arrow_downward, outputs.down, player),
     ],
   );
 }
 
-Column buildEventCard(Color color, String label, description, String imagePath,
-    double width, double height, List<dynamic> outputs) {
+Column buildEventCard(
+    Color color, double width, double height, IEvent event, Player player) {
   return Column(
     mainAxisSize: MainAxisSize.min,
     mainAxisAlignment: MainAxisAlignment.center,
@@ -58,7 +62,7 @@ Column buildEventCard(Color color, String label, description, String imagePath,
           height: min(width, height) / 1.25,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(imagePath),
+              image: AssetImage(event.foreground.imagePath),
               fit: BoxFit.cover,
             ),
             color: const Color.fromARGB(0, 255, 255, 255),
@@ -76,7 +80,7 @@ Column buildEventCard(Color color, String label, description, String imagePath,
             Align(
               alignment: Alignment.topCenter,
               child: Text(
-                label,
+                event.zone,
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
@@ -84,11 +88,6 @@ Column buildEventCard(Color color, String label, description, String imagePath,
                 ),
               ),
             ),
-
-            // buildOutputsIcons(outputs[0], width, height),
-            // buildOutputsIcons(outputs[3], width, height),
-            // buildOutputsIcons(outputs[2], width, height),
-            // buildOutputsIcons(outputs[1], width, height),
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
@@ -100,7 +99,7 @@ Column buildEventCard(Color color, String label, description, String imagePath,
                 ),
                 child: Center(
                   child: Text(
-                    '$description',
+                    event.description,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 12,
@@ -113,11 +112,11 @@ Column buildEventCard(Color color, String label, description, String imagePath,
             ),
             Align(
                 alignment: Alignment.center,
-                child:
-                    buildRowOutputsRightLeftIcons(outputs[0], width, height)),
+                child: buildRowOutputsRightLeftIcons(
+                    event.outs, width, height, player)),
             Align(
                 alignment: Alignment.center,
-                child: buildColumnOutputs(outputs[1], width, height)),
+                child: buildColumnOutputs(event.outs, width, height, player)),
           ])),
     ],
   );

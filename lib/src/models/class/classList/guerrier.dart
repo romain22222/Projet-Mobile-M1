@@ -3,7 +3,7 @@ import '../../cards/IChampion.dart';
 import '../../cards/cardList/champions/guerrier_champion.dart';
 import '../../class/IClass.dart';
 import '../../events/IEvent.dart';
-import '../../events/eventList/unknown_event.dart';
+import '../../events/eventList/guerrier_starting_event.dart';
 
 class Guerrier implements IClass {
   @override
@@ -13,7 +13,7 @@ class Guerrier implements IClass {
   IChampion startingChampion = GuerrierChampion();
 
   @override
-  IEvent startingEvent = UnknownEvent();
+  IEvent startingEvent = GuerrierStartingEvent();
 
   @override
   IllustrationType classSelectionDisplay =
