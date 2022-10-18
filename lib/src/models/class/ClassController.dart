@@ -1,7 +1,7 @@
 import './classList/guerrier.dart';
 import './classList/mage.dart';
-import './classList/voleur.dart';
 import './classList/unknown_class.dart';
+import './classList/voleur.dart';
 import 'IClass.dart';
 
 class ClassController {
@@ -10,6 +10,9 @@ class ClassController {
     "voleur": Voleur(),
     "mage": Mage()
   };
+
+  static Map<IClass, String> reversedClass =
+      classes.map((k, v) => MapEntry(v, k));
 
   static dynamic getClassFromId(classId) =>
       classes[classId.toLowerCase()] ?? UnknownClass();
@@ -29,4 +32,7 @@ class ClassController {
     }
     return classSelectionList;
   }
+
+  static getIdFromClass(IClass classChosen) =>
+      reversedClass[classChosen] ?? "unknown";
 }

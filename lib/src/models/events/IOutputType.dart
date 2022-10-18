@@ -10,6 +10,7 @@ abstract class IOutputType {
   abstract RequirementsType requirements;
   abstract ResultType result;
   abstract Direction direction;
+  String get id => "$direction: $description";
 }
 
 ResultType defaultResult = (Player player) {

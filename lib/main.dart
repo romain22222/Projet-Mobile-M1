@@ -1,7 +1,19 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:projet_mobile_m1/firebase_options.dart';
+
 import 'pages/homePage.dart';
 
-void main() {
+Future<void> main() async {
+  // Permet de faire des choses asynchrones dans le main sans faire softlock l'appli
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialise firebase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  // Lance l'appli
   runApp(const MyApp());
 }
 

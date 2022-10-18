@@ -3,7 +3,19 @@ import 'cardList/items/banana.dart';
 import 'cardList/unknown_card.dart';
 
 class CardController {
-  Map<String, ICard> cards = {"banana": Banana()};
+  static Map<String, ICard> cards = {"banana": Banana()};
 
-  dynamic getCardFromId(cardId) => cards[cardId] ?? UnknownCard();
+  static Map<ICard, String> reversedCards = cards.map((k, v) => MapEntry(v, k));
+
+  static ICard getCardFromId(cardId) => cards[cardId] ?? UnknownCard();
+
+  static String getIdFromCard(card) => reversedCards[card] ?? "unknown";
+
+  static getIdsFromCards(List<ICard> inventory) {
+    return inventory.map((e) => getIdFromCard(e));
+  }
+
+  static List<ICard> getCardsFromIds(List<String> inventory) {
+    return inventory.map((e) => getCardFromId(e)) as List<ICard>;
+  }
 }
