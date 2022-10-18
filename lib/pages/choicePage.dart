@@ -9,32 +9,38 @@ import '../widgets/events/choice.dart';
 
 class ChoicePage extends StatefulWidget {
   const ChoicePage({Key? key}) : super(key: key);
+
   @override
   _ChoicePageState createState() => _ChoicePageState();
 }
 
 class _ChoicePageState extends State<ChoicePage> {
   late Player player;
+  Future<bool> _onWillPop() async {
+    return false; //<-- SEE HERE
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/backgrounds/background_00.png"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Text("Choisissez votre destin !"),
-          ChoiceClassWidget(this),
-        ],
-      ),
-    ));
+    return WillPopScope(
+        onWillPop: _onWillPop,
+        child: Scaffold(
+            body: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/backgrounds/background_00.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text("Choisissez votre destin !"),
+              ChoiceClassWidget(this),
+            ],
+          ),
+        )));
   }
 }
 

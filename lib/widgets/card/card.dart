@@ -12,6 +12,7 @@ void commonActionOfOutput(
   print("Pressed ${output.direction}");
   player.history.outChosen.add(output);
   // TODO check si fin de partie -> écran de fin
+
   Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => EventPage(player)),
@@ -30,6 +31,7 @@ IconButton createOutput(
           print("Ignored");
           return;
         }
+
         output.result(player);
         commonActionOfOutput(context, output, player);
       });

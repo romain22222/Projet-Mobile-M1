@@ -18,5 +18,4 @@ abstract class IEvent {
   abstract IllustrationType foreground;
 // missing classSpecific
   abstract RequirementsType requirements;
-  List<IOutputType> get outputs => [outs.up, outs.right, outs.down, outs.left];
 }
