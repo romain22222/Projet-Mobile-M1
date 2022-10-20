@@ -33,6 +33,6 @@ class ClassController {
     return classSelectionList;
   }
 
-  static getIdFromClass(IClass classChosen) =>
+  static String getIdFromClass(IClass classChosen) =>
       reversedClass[classChosen] ?? "unknown";
 }

@@ -5,7 +5,7 @@ import '../../class/IClass.dart';
 import '../../events/IEvent.dart';
 import '../../events/eventList/unknown_event.dart';
 
-class Voleur implements IClass {
+class Voleur extends IClass {
   @override
   IllustrationType classIcon = IllustrationType("voleur");
 

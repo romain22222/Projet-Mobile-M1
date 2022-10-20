@@ -36,7 +36,7 @@ class GoToTown extends IOutputType {
   Direction direction = Direction.up;
 }
 
-class ExploreTemple implements IOutputType {
+class ExploreTemple extends IOutputType {
   @override
   String description = "Explorer le temple";
   @override

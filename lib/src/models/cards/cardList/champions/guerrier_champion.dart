@@ -1,7 +1,7 @@
 import '../../../../utils/IllustrationType.dart';
 import '../../IChampion.dart';
 
-class GuerrierChampion implements IChampion {
+class GuerrierChampion extends IChampion {
   @override
   String name = "Guerrier";
 

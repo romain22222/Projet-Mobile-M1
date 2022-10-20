@@ -39,8 +39,8 @@ class Player {
   Stats stats = Stats();
   dynamic get jsonFormat => JsonFormatPlayer(
       uuid,
-      CardController.getIdsFromCards(inventory),
-      EventController.getIdsFromEvents(availableEvents),
+      CardController.getIdsFromCards(inventory) as List<String>,
+      EventController.getIdsFromEvents(availableEvents) as List<String>,
       history.toJson(),
       ClassController.getIdFromClass(classChosen),
       stats.toJson());
@@ -55,7 +55,10 @@ class Player {
 
   Player.empty({this.uuid = ""});
 
-  static getPlayerFromUuid(uuid) async {
+  static Future<Player> getPlayerFromUuid(String uuid) async {
+    if (uuid == "") {
+      return Player.empty();
+    }
     DatabaseReference ref = FirebaseDatabase.instance.ref("users/$uuid");
     final snapshot = await ref.get();
     if (snapshot.exists) {
@@ -63,8 +66,9 @@ class Player {
       return Player.complex(
           values.uuid,
           ClassController.getClassFromId(values.classChosen),
-          CardController.getCardsFromIds(values.inventory),
-          EventController.eventValuesFrom(values.availableEvents),
+          CardController.getCardsFromIds(values.inventory) as List<ICard>,
+          EventController.eventValuesFrom(values.availableEvents)
+              as List<IEvent>,
           History.fromJson(values.history),
           Stats.fromJson(values.stats));
     }

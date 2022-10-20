@@ -21,15 +21,18 @@ class History {
   addOutToHistory(IOutputType o) => outChosen.add(o);
 
   toJson() => HistoryJson(
-      EventController.getIdsFromEvents(eventReceived),
-      CardController.getIdsFromCards(cardReceived),
+      EventController.getIdsFromEvents(eventReceived) as List<String>,
+      CardController.getIdsFromCards(cardReceived) as List<String>,
       outChosen.map((e) => e.id) as List<String>);
 
   History();
 
   History.fromJson(HistoryJson history) {
-    eventReceived = EventController.eventValuesFrom(history.eventReceived);
-    cardReceived = CardController.getCardsFromIds(history.eventReceived);
-    outChosen = EventController.findOutsInEvents(history.outChosen);
+    eventReceived =
+        EventController.eventValuesFrom(history.eventReceived) as List<IEvent>;
+    cardReceived =
+        CardController.getCardsFromIds(history.eventReceived) as List<ICard>;
+    outChosen = EventController.findOutsInEvents(history.outChosen)
+        as List<IOutputType>;
   }
 }

@@ -1,4 +1,5 @@
 //hello world please
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -138,7 +139,9 @@ class _ChoiceClassWidget extends State<ChoiceClassWidget> {
                               ? () => {
                                     state.player = Player(
                                         ClassController.getClassFromId(
-                                            selectedClass)),
+                                            selectedClass),
+                                        FirebaseAuth.instance.currentUser?.uid
+                                            as String),
                                     state.player.initBasicEvents(),
                                     Navigator.push(
                                       context,

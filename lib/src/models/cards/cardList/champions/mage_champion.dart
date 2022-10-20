@@ -1,7 +1,7 @@
 import '../../../../utils/IllustrationType.dart';
 import '../../IChampion.dart';
 
-class MageChampion implements IChampion {
+class MageChampion extends IChampion {
   @override
   String name = "Mage";
 

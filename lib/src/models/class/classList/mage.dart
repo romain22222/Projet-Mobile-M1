@@ -5,7 +5,7 @@ import '../../class/IClass.dart';
 import '../../events/IEvent.dart';
 import '../../events/eventList/mage_starting_event.dart';
 
-class Mage implements IClass {
+class Mage extends IClass {
   @override
   IllustrationType classIcon = IllustrationType("mage");
 

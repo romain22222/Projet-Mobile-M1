@@ -54,6 +54,7 @@ class DefaultFirebaseOptions {
     appId: '1:260774635370:android:495e412decb022f4b0a713',
     messagingSenderId: '260774635370',
     projectId: 'projet-flutter-m1',
+    databaseURL: 'https://projet-flutter-m1-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'projet-flutter-m1.appspot.com',
   );
 
@@ -62,6 +63,7 @@ class DefaultFirebaseOptions {
     appId: '1:260774635370:ios:93d79c658a7f2726b0a713',
     messagingSenderId: '260774635370',
     projectId: 'projet-flutter-m1',
+    databaseURL: 'https://projet-flutter-m1-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'projet-flutter-m1.appspot.com',
     iosClientId: '260774635370-q1muq6rr3alshuds6c7ueobj8tcdkqvj.apps.googleusercontent.com',
     iosBundleId: 'com.example.projetMobileM1',

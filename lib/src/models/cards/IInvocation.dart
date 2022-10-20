@@ -1,3 +1,3 @@
 import 'IBeing.dart';
 
-abstract class IInvocation implements IBeing {}
+abstract class IInvocation extends IBeing {}

@@ -11,8 +11,8 @@ class CardController {
 
   static String getIdFromCard(card) => reversedCards[card] ?? "unknown";
 
-  static getIdsFromCards(List<ICard> inventory) {
-    return inventory.map((e) => getIdFromCard(e));
+  static List<String> getIdsFromCards(List<ICard> inventory) {
+    return inventory.map((e) => getIdFromCard(e)) as List<String>;
   }
 
   static List<ICard> getCardsFromIds(List<String> inventory) {

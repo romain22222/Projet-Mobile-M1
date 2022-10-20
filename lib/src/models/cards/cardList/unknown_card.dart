@@ -1,7 +1,7 @@
 import '../../../utils/IllustrationType.dart';
 import '../ICard.dart';
 
-class UnknownCard implements ICard {
+class UnknownCard extends ICard {
   @override
   String name = "unknown";
 

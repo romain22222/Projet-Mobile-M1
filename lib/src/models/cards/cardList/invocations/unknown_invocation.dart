@@ -1,7 +1,7 @@
 import '../../../../utils/IllustrationType.dart';
 import '../../IInvocation.dart';
 
-class UnknownInvocation implements IInvocation {
+class UnknownInvocation extends IInvocation {
   @override
   String name = "unknown";
 

@@ -1,5 +1,5 @@
 import 'ICard.dart';
 
-abstract class IBeing implements ICard {
+abstract class IBeing extends ICard {
   abstract int life;
 }

@@ -1,7 +1,7 @@
 import '../../../../utils/IllustrationType.dart';
 import '../../IItem.dart';
 
-class Banana implements IItem {
+class Banana extends IItem {
   @override
   String name = "Banana";
 

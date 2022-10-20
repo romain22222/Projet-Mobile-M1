@@ -5,23 +5,25 @@ import 'eventList/tent_forest.dart';
 import 'eventList/unknown_event.dart';
 
 class EventController {
-  static Map<String, IEvent> events = {"tent_forest": TentForest()};
+  static Map<String, IEvent> events = {
+    "tent_forest": TentForest(),
+  };
   static Map<IEvent, String> reversedEvents =
       events.map((k, v) => MapEntry(v, k));
 
   static IEvent getEventFromId(eventId) => events[eventId] ?? UnknownEvent();
   static String getIdFromEvent(event) => reversedEvents[event] ?? "unknown";
   static Iterable get eventIds => events.keys;
-  static List<IEvent> eventValuesFrom(List<String> ids) {
-    return ids.map((e) => getEventFromId(e)) as List<IEvent>;
+  static Iterable<IEvent> eventValuesFrom(List<String> ids) {
+    return ids.map((e) => getEventFromId(e));
   }
 
-  static getIdsFromEvents(List<IEvent> availableEvents) {
+  static Iterable<String> getIdsFromEvents(List<IEvent> availableEvents) {
     return availableEvents.map((e) => getIdFromEvent(e));
   }
 
-  static List<IOutputType> findOutsInEvents(List<String> outChosen) {
-    return outChosen.map((e) => findOutInEvents(e)) as List<IOutputType>;
+  static Iterable<IOutputType> findOutsInEvents(List<String> outChosen) {
+    return outChosen.map((e) => findOutInEvents(e));
   }
 
   static IOutputType findOutInEvents(String id) {

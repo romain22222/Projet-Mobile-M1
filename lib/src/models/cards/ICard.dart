@@ -5,4 +5,5 @@ abstract class ICard {
   abstract IllustrationType image;
   void effect();
   void passiveEffect();
+  String get id => name + image.imagePath;
 }

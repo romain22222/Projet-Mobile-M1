@@ -1,6 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'choicePage.dart';
+import 'package:projet_mobile_m1/pages/eventPage.dart';
+import 'package:projet_mobile_m1/src/models/Player.dart';
+import 'package:projet_mobile_m1/src/utils/googleSignIn.dart';
+
 import './settingsPage.dart';
+import 'choicePage.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -13,10 +18,30 @@ class HomePage extends StatelessWidget {
         Column(children: [
           MaterialButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ChoicePage()),
-                );
+                Player player;
+                signInWithGoogle().then((user) async => {
+                      if (FirebaseAuth.instance.currentUser != null)
+                        {
+                          player = await Player.getPlayerFromUuid(
+                              FirebaseAuth.instance.currentUser?.uid ?? ""),
+                          if (player.uuid == "")
+                            {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const ChoicePage()),
+                              )
+                            }
+                          else
+                            {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => EventPage(player)),
+                              )
+                            }
+                        }
+                    });
               },
               child: const Text('Jouer')),
           MaterialButton(

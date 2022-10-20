@@ -1,3 +1,3 @@
 import 'IBeing.dart';
 
-abstract class IChampion implements IBeing {}
+abstract class IChampion extends IBeing {}
